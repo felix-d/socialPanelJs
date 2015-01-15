@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css" />
+    <style>
+        html, body {  height:100%;background-color: grey; }
+        .container {
+            position: relative;
+            height:100%;
+            background-color: #FFF;
+        }
+        </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="social-panel.js"></script>
+    <script>
+        $(function() {
+            socialPanel( {
+                icons: {
+                    facebook: {
+                        url: '#',
+                        style: {
+                        }
+                    },
+                    twitter: '#',
+                    instagram: '#',
+                    'google-plus': '#'
+                },
+                options: {}
+            });
+        });
+    </script>
+
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+</head>
+
+<body>
+    <div class="container"></div>
+</body>
+
+</html>
