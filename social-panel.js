@@ -16,7 +16,7 @@ var socialPanel = (function socialBanner($) {
 
     //Initialize setup values
     var breakingPoint = 797,
-        yOffset = 200,
+        yOffset = 150,
         container = $('body'),
         mobileWidth;
 
@@ -53,7 +53,7 @@ var socialPanel = (function socialBanner($) {
 
         //set css
         if ($(window).width() < breakingPoint) {
-
+            var padding;
             //we remove any mouse events
             si.off('mouseover mouseleave');
             si.css({
@@ -66,10 +66,27 @@ var socialPanel = (function socialBanner($) {
                 'margin-left': -mobileWidth / 2
             });
 
+            if (!arguments.callee.cache.padding) {
+                padding = arguments.callee.cache.padding = socialPanel.outerHeight();
+
+            } else {
+                padding = arguments.callee.cache.padding;
+            }
             //We add padding to the container
-            $('body').css({'padding-bottom': '48px', 'margin-bottom': '0px'});
+            if ($('#padding-div').length === 0) {
+
+                var paddingDiv = $('<div id="padding-div"></div>');
+                paddingDiv.css({
+                    "height": padding
+                });
+                $('body').append(paddingDiv);
+            }
 
         } else {
+            if($('#padding-div')){
+            $('#padding-div').remove();
+            }
+            // }
             //We add event listeners
             si.mouseover(function() {
                 $(this).css('width', '64px');
@@ -81,7 +98,7 @@ var socialPanel = (function socialBanner($) {
                 'display': 'block',
             });
             socialPanel.css({
-                'top': 200,
+                'top': yOffset,
                 'bottom': '',
                 'left': '0px',
                 'margin-left': ''
@@ -114,7 +131,6 @@ var socialPanel = (function socialBanner($) {
 
             //We set the default styles for the div
             d.css({
-                "height": "32px",
                 "padding": "8px 0px",
                 "width": "48px",
                 "transition": "width 0.2s",
@@ -154,9 +170,11 @@ var socialPanel = (function socialBanner($) {
             "position": "fixed",
             "left": "0px",
             "top": yOffset + "px",
-            "z-index": 999
+            "z-index": 999,
+            "line-height": ""
         });
 
+        $('body').append(socialPanel);
         //checkScreen
         checkScreen($(divs));
 
@@ -165,7 +183,6 @@ var socialPanel = (function socialBanner($) {
 
 
         //We append the panel to the container
-        $('body').append(socialPanel);
     };
 
 })(jQuery);
